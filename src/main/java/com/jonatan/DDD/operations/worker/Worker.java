@@ -15,8 +15,8 @@ import java.util.Set;
 public class Worker extends AggregateEvent<WorkerID> {
 
     protected WorkerID workerID;
-    protected  WorkerName workerName;
-    protected  WorkerPhone workerPhone;
+    protected WorkerName workerName;
+    protected WorkerPhone workerPhone;
     protected Set<WorkType> workTypes;
     protected Set<Information> informations;
 
@@ -27,8 +27,8 @@ public class Worker extends AggregateEvent<WorkerID> {
         this.workerPhone = workerPhone;
     }
 
-    public static Worker from(WorkerID workerID,WorkerName workerName,WorkerPhone workerPhone, List<DomainEvent> events) {
-        var worker = new Worker(workerID,workerName,workerPhone);
+    public static Worker from(WorkerID workerID, WorkerName workerName, WorkerPhone workerPhone, List<DomainEvent> events) {
+        var worker = new Worker(workerID, workerName, workerPhone);
         events.forEach(worker::applyEvent);
         return worker;
     }
@@ -39,22 +39,21 @@ public class Worker extends AggregateEvent<WorkerID> {
     }
 
 
-
-    public void addWorkType(WorkerID workerID, WorkTypeID workTypeID, WorkTypeName workTypeName)  {
+    public void addWorkType(WorkerID workerID, WorkTypeID workTypeID, WorkTypeName workTypeName) {
         Objects.requireNonNull(workerID);
         Objects.requireNonNull(workTypeID);
         Objects.requireNonNull(workTypeName);
         appendChange(new WorkTypeAdded(workTypeID, workTypeName)).apply();
     }
 
-    public void deleteWorkType(WorkerID workerID, WorkTypeID workTypeID, WorkTypeName workTypeName)  {
+    public void deleteWorkType(WorkerID workerID, WorkTypeID workTypeID, WorkTypeName workTypeName) {
         Objects.requireNonNull(workerID);
         Objects.requireNonNull(workTypeID);
         Objects.requireNonNull(workTypeName);
         appendChange(new WorkTypeDeleted(workTypeID, workTypeName)).apply();
     }
 
-    public void AddName( WorkerName workerName)  {
+    public void AddName(WorkerName workerName) {
         Objects.requireNonNull(workerID);
         Objects.requireNonNull(workerName);
         appendChange(new NameAdded(workerName)).apply();

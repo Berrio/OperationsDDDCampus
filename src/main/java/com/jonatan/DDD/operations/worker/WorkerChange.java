@@ -18,9 +18,9 @@ public class WorkerChange extends EventChange {
             worker.workTypes=event.getWorkTypes();
         });
 
-        apply((WorkTypeAdded event)->{
-            var type=worker.getWorkTypeById(event.getWorkTypeID()).
-                    orElseThrow(()-> new IllegalArgumentException("Worker not found"));
+        apply((WorkTypeAdded event) -> {
+            var type = worker.getWorkTypeById(event.getWorkTypeID()).
+                    orElseThrow(() -> new IllegalArgumentException("Worker not found"));
             type.UpdateTypeName(event.getWorkTypeName());
         });
 
