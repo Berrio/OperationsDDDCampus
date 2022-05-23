@@ -1,18 +1,24 @@
-package com.jonatan.DDD.operations.worker.events;
+package com.jonatan.DDD.operations.worker.commands;
 
-import co.com.sofka.domain.generic.DomainEvent;
+import co.com.sofka.domain.generic.Command;
 import com.jonatan.DDD.operations.worker.values.WorkTypeID;
 import com.jonatan.DDD.operations.worker.values.WorkTypeName;
+import com.jonatan.DDD.operations.worker.values.WorkerID;
 
-public class WorkTypeDeleted extends DomainEvent {
+public class AddWorkType extends Command {
 
+    private final WorkerID workerID;
     private final WorkTypeID workTypeID;
     private final WorkTypeName workTypeName;
 
-    public WorkTypeDeleted(WorkTypeID workTypeID, WorkTypeName workTypeName) {
-        super("operations.service.WorkTypeDeleted");
+    public AddWorkType(WorkerID workerID, WorkTypeID workTypeID, WorkTypeName workTypeName) {
+        this.workerID = workerID;
         this.workTypeID = workTypeID;
         this.workTypeName = workTypeName;
+    }
+
+    public WorkerID getWorkerID() {
+        return workerID;
     }
 
     public WorkTypeID getWorkTypeID() {
