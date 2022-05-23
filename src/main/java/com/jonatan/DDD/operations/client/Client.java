@@ -1,9 +1,11 @@
 package com.jonatan.DDD.operations.client;
 
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 import com.jonatan.DDD.operations.client.events.*;
 import com.jonatan.DDD.operations.client.values.*;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -34,23 +36,25 @@ public class Client extends AggregateEvent<ClientID> {
         appendChange(new ServiceRequestAdded(entityId,typeOfRequest,stateName,description)).apply();
     }
 
+    public static Client from(ClientID clientID, List<DomainEvent> events) {
+        var client = new Client(clientID);
+        events.forEach(client::applyEvent);
+        return client;
+    }
+
     public void addUbication(UbicationID entityId,Address address){
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(address);
         appendChange(new UbicationAdded(entityId,address)).apply();
-
     }
 
-    public void UpdateDescriptionFromSerRequest(ServiceRequestID entityId,Description description){
-        appendChange(new DescriptionFromSerRequestUpdated(entityId,description)).apply();
-    }
 
     public void UpdateStateNameFromSerRequest(ServiceRequestID entityId,StateName stateName){
-        appendChange(new StateNameFromSerRequestUpdated(entityId,stateName)).apply();
+        appendChange(new StateNameUpdated(entityId,stateName)).apply();
     }
 
     public void UpdateTypeOfRequestFromSerRequest(ServiceRequestID entityId,TypeOfRequest typeOfRequest){
-        appendChange(new TypeOfRequestFromSerRequestUpdated(entityId,typeOfRequest)).apply();
+        appendChange(new TypeOfRequestUpdated(entityId,typeOfRequest)).apply();
     }
 
     public  Optional<ServiceRequest> getServiceRequest(ServiceRequestID serviceRequestID){

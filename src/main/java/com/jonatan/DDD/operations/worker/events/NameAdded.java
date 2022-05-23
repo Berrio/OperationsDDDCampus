@@ -1,0 +1,4 @@
+package com.jonatan.DDD.operations.worker.events;
+
+public class NameAdded {
+}

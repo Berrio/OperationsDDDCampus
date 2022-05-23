@@ -4,12 +4,12 @@ import co.com.sofka.domain.generic.DomainEvent;
 import com.jonatan.DDD.operations.client.values.ServiceRequestID;
 import com.jonatan.DDD.operations.client.values.StateName;
 
-public class StateNameFromSerRequestUpdated extends DomainEvent {
+public class StateNameUpdated extends DomainEvent {
 
     private final ServiceRequestID serviceRequestID;
     private final StateName stateName;
 
-    public StateNameFromSerRequestUpdated(ServiceRequestID serviceRequestID, StateName stateName) {
+    public StateNameUpdated(ServiceRequestID serviceRequestID, StateName stateName) {
         super("operations.client.statenamefromserrequestupdated");
         this.serviceRequestID=serviceRequestID;
         this.stateName=stateName;

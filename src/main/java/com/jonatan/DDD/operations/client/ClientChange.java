@@ -21,7 +21,3 @@ public class ClientChange extends EventChange {
     }
 }
 
-//    protected TypeOfClient typeOfClient;
-//    protected TypeID typeID;
-//    protected Set<Ubication> ubications;
-//    protected Set<ServiceRequest>serviceRequests;

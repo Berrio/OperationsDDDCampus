@@ -1,10 +1,10 @@
-package com.jonatan.DDD.operations.worker.values;
+package com.jonatan.DDD.operations.service.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class DateOfService implements ValueObject<String> {
+public class StateName implements ValueObject<String> {
 
     private String value;
 
@@ -13,17 +13,17 @@ public class DateOfService implements ValueObject<String> {
         return value;
     }
 
-    public DateOfService(String value) {
+    public StateName(String value) {
 
         this.value = Objects.requireNonNull(value);
         if (value.isBlank()) {
-            throw new IllegalArgumentException("The  DateOfService can't be blank");
+            throw new IllegalArgumentException("The  StateName can't be blank");
         }
         if (value.length() > 100) {
-            throw new IllegalArgumentException("The  DateOfService can't be too long");
+            throw new IllegalArgumentException("The  StateName can't be too long");
         }
         if (value.length() < 5) {
-            throw new IllegalArgumentException("The  DateOfService can't be too short");
+            throw new IllegalArgumentException("The  StateName can't be too short");
         }
 
     }
@@ -32,7 +32,7 @@ public class DateOfService implements ValueObject<String> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DateOfService that = (DateOfService) o;
+        StateName that = (StateName) o;
         return Objects.equals(value, that.value);
     }
 
