@@ -19,4 +19,5 @@ public class WorkType extends Entity<WorkTypeID> {
 
         this.workTypeName = Objects.requireNonNull(workTypeName);
     }
+
 }

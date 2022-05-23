@@ -48,6 +48,9 @@ public class Client extends AggregateEvent<ClientID> {
         appendChange(new UbicationAdded(entityId,address)).apply();
     }
 
+    public void UpdateServiceRequest(ServiceRequestID entityId,StateName stateName,Description description){
+        appendChange(new StateNameUpdated(entityId,stateName)).apply();
+    }
 
     public void UpdateStateNameFromSerRequest(ServiceRequestID entityId,StateName stateName){
         appendChange(new StateNameUpdated(entityId,stateName)).apply();
@@ -57,11 +60,11 @@ public class Client extends AggregateEvent<ClientID> {
         appendChange(new TypeOfRequestUpdated(entityId,typeOfRequest)).apply();
     }
 
-    public  Optional<ServiceRequest> getServiceRequest(ServiceRequestID serviceRequestID){
+    public  Optional<ServiceRequest> getServiceRequestById(ServiceRequestID serviceRequestID){
         return serviceRequests().stream().filter(serviceRequest -> serviceRequest.identity().equals(serviceRequestID))
                 .findFirst();
     }
-    public Optional<Ubication> getUbication(UbicationID ubicationID){
+    public Optional<Ubication> getUbicationById(UbicationID ubicationID){
         return ubications().stream().filter(ubication -> ubication.identity().equals(ubicationID))
                 .findFirst();
     }

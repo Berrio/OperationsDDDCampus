@@ -1,20 +1,17 @@
 package com.jonatan.DDD.operations.client.events;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import com.jonatan.DDD.operations.client.values.ClientID;
-import com.jonatan.DDD.operations.client.values.Description;
-import com.jonatan.DDD.operations.client.values.StateName;
-import com.jonatan.DDD.operations.client.values.TypeOfRequest;
+import com.jonatan.DDD.operations.client.values.*;
 import com.jonatan.DDD.operations.service.values.ServiceID;
 
 public class ServiceRequestUpdated extends DomainEvent  {
 
-    private final ServiceID serviceID;
+    private final ServiceRequestID serviceID;
     private final TypeOfRequest typeOfRequest;
     private final Description description;
     private final StateName stateName;
 
-    public ServiceRequestUpdated(ServiceID serviceID, TypeOfRequest typeOfRequest, Description description, StateName stateName) {
+    public ServiceRequestUpdated(ServiceRequestID serviceID, TypeOfRequest typeOfRequest, Description description, StateName stateName) {
         super("operations.client.ServiceRequestUpdated");
         this.serviceID = serviceID;
         this.typeOfRequest = typeOfRequest;
@@ -22,7 +19,7 @@ public class ServiceRequestUpdated extends DomainEvent  {
         this.stateName = stateName;
     }
 
-    public ServiceID getServiceID() {
+    public ServiceRequestID getServiceID() {
         return serviceID;
     }
 

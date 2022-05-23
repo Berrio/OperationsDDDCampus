@@ -9,13 +9,13 @@ public class WorkerAdded extends DomainEvent {
 
     private final ServiceID serviceID;
     private final WorkerID workerID;
-    private final WorkerName workerName;
 
-    public WorkerAdded(ServiceID serviceID, WorkerID workerID, WorkerName workerName) {
+
+    public WorkerAdded(ServiceID serviceID, WorkerID workerID) {
         super("operations.service.WorkerAdded");
         this.serviceID = serviceID;
         this.workerID = workerID;
-        this.workerName = workerName;
+
     }
 
     public ServiceID getServiceID() {
@@ -26,7 +26,5 @@ public class WorkerAdded extends DomainEvent {
         return workerID;
     }
 
-    public WorkerName getWorkerName() {
-        return workerName;
-    }
+
 }

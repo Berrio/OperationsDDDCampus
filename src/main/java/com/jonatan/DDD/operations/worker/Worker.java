@@ -38,6 +38,8 @@ public class Worker extends AggregateEvent<WorkerID> {
         subscribe(new WorkerChange(this));
     }
 
+
+
     public void addWorkType(WorkerID workerID, WorkTypeID workTypeID, WorkTypeName workTypeName)  {
         Objects.requireNonNull(workerID);
         Objects.requireNonNull(workTypeID);
@@ -58,7 +60,7 @@ public class Worker extends AggregateEvent<WorkerID> {
         appendChange(new NameAdded(workerName)).apply();
     }
 
-    protected Optional<WorkType> getObservationById(WorkTypeID entityId) {
+    protected Optional<WorkType> getWorkTypeById(WorkTypeID entityId) {
         return getWorkTypes()
                 .stream()
                 .filter(workType -> workType.identity().equals(entityId))
